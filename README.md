@@ -12,7 +12,7 @@ A fairly minimal server example, hosted over a [socket.io-like](https://www.npmj
 
 ```typescript
 const JsonRpcEngine = require('json-rpc-engine');
-const RpcCap = require('rpc-cap');
+const RpcCap = require('@alayanetwork/rpc-cap');
 
 // Here we will restrict access to subsequent functions:
 const capabilities = new RpcCap({
@@ -72,9 +72,9 @@ Once this middleware is added to a server that is directing requests to a [JsonR
 
 ## Usage
 
-The capability system is initialized with a variety of options, and is itself a [@metamask/controllers](https://github.com/MetaMask/controllers/)-compatible controller, which defines how new permissions are persisted to state, and how they are restored in the constructor.
+The capability system is initialized with a variety of options, and is itself a [controllers](https://github.com/AlayaNetwork/samurai-controllers/)-compatible controller, which defines how new permissions are persisted to state, and how they are restored in the constructor.
 
-Once initialized, it exposes a special [AuthenticatedJsonRpcMiddleware](https://github.com/MetaMask/rpc-cap/blob/master/src/%40types/index.d.ts#L7-L15) type method `providerMiddlewareFunction(domainInfo, req, res, next, end)`, which requires an assumed-authenticated `domain` object, followed by normal `json-rpc-engine` middleware parameters.
+Once initialized, it exposes a special [AuthenticatedJsonRpcMiddleware](https://github.com/AlayaNetwork/samurai-rpc-cap/blob/master/src/%40types/index.d.ts#L7-L15) type method `providerMiddlewareFunction(domainInfo, req, res, next, end)`, which requires an assumed-authenticated `domain` object, followed by normal `json-rpc-engine` middleware parameters.
 
 It simply passes through methods that are listed in the optional `safeMethods` array, but otherwise requires the requesting domain to have a permissions entry.
 
@@ -206,7 +206,7 @@ If consuming this module for your own JSON-RPC API, here are the options require
 
 #### initState?: CapabilitiesConfig
 
-Our persistence model depends on the `@metamask/controllers` architecture, which means state updates are emitted via `controller.subscribe((update) => {/* handle update */});`
+Our persistence model depends on the `@alayanetwork/controllers` architecture, which means state updates are emitted via `controller.subscribe((update) => {/* handle update */});`
 
 This `update` value should then be fed back in as the `initState` value.
 
@@ -336,7 +336,7 @@ None of these features are used yet, but we've used this schema internally to pr
 
 ```javascript
 const Engine = require('json-rpc-engine')
-const CapabilitiesController = require('rpc-cap')
+const CapabilitiesController = require('@alayanetwork/rpc-cap')
 
 const capabilitiesConfig = {
 

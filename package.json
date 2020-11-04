@@ -1,5 +1,5 @@
 {
-  "name": "rpc-cap",
+  "name": "@alayanetwork/rpc-cap",
   "version": "3.1.0",
   "description": "A module for adding an object-capabilities system to any JSON-RPC API as middleware for json-rpc-engine",
   "main": "dist/index.js",
@@ -20,7 +20,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MetaMask/rpc-cap.git"
+    "url": "git+https://github.com/AlayaNetwork/samurai-rpc-cap.git"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
@@ -36,7 +36,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@metamask/controllers": "^2.0.2",
+    "@alayanetwork/controllers": "^3.0.1",
     "eth-rpc-errors": "^2.1.1",
     "is-subset": "^0.1.1",
     "json-rpc-engine": "^5.2.0",

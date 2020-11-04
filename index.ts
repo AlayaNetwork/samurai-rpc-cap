@@ -12,7 +12,7 @@ import {
   JsonRpcEngine,
 } from 'json-rpc-engine';
 
-import { BaseController } from '@metamask/controllers';
+import { BaseController } from '@alayanetwork/controllers';
 
 import {
   ICaveatFunction,
