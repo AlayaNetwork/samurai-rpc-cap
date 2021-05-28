@@ -2,6 +2,7 @@ import { JsonRpcMiddleware } from 'json-rpc-engine';
 import { IOcapLdCaveat } from './@types/ocap-ld';
 import { unauthorized } from './errors';
 import isSubset from 'is-subset';
+import { decodeBech32Address, isBech32Address } from '@alayanetwork/web3-utils';
 
 export type ICaveatFunction = JsonRpcMiddleware;
 
@@ -29,12 +30,18 @@ export const requireParams: ICaveatFunctionGenerator = function requireParams (s
  */
 export const filterResponse: ICaveatFunctionGenerator = function filterResponse (serialized: IOcapLdCaveat) {
   const { value } = serialized;
+  const valueHex = value.map((acc: any) => {
+    if (isBech32Address(acc)) {
+      return decodeBech32Address(acc);
+    }
+    return acc;
+  });
   return (_req, res, next, _end): void => {
 
     next((done) => {
       if (Array.isArray(res.result)) {
         res.result = res.result.filter((item) => {
-          return value.includes(item);
+          return valueHex.includes(decodeBech32Address(item));
         });
       }
       done();
